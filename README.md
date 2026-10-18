@@ -40,20 +40,12 @@ The pipeline is designed to separate prompt construction, model interaction, res
 6. Return the structured JSON result for downstream processing.
 
 ### Architecture
+<p align="center">
+  <img src="JSON%20Extractor.jpg" alt="JSON Extractor Architecture" width="800">
+</p>
 
-![alt text](1.jpg)
+<img width="630" height="220" alt="6" src="https://github.com/user-attachments/assets/da2a6613-4ea4-4e98-b8fb-9e603061cb10" />
 
-
-+---------------------+       +-----------------------+       +------------------------+
-|  User Input / Raw   | ----> | Structured Prompting  | ----> |  Google Gemini Model   |
-|   Unstructured Data |       | & System Instructions |       |   (gemini-3.8-flash)   |
-+---------------------+       +-----------------------+       +------------------------+
-                                                                          |
-                                                                          v
-+---------------------+       +-----------------------+       +------------------------+
-| Downstream Systems  | <---- | Validated JSON Output | <---- | JSON Schema Extractor  |
-| / Automated Pipeline|       |  (Deterministic Data) |       |  & Response Parser     |
-+---------------------+       +-----------------------+       +------------------------+
 
 ### Practical Applications
 
@@ -91,27 +83,11 @@ The retrieval pipeline connects document processing, semantic search, and LLM-ba
 8. Generate an answer and present available source references.
 
 ### Architecture
+<img width="800" height="800" alt="2" src="https://github.com/user-attachments/assets/2e375aa7-8f41-4165-9e96-4b4c386113c2" />
 
-![alt text](2.jpg)
 
-[ Document Ingestion & Storage Phase ]
-+---------------------+       +-----------------------+       +------------------------+
-| Source PDF / Docs   | ----> | Text Chunking &       | ----> |  Vector Embeddings     |
-| (Company Manuals)   |       | Preprocessing         |       |  (Stored locally)      |
-+---------------------+       +-----------------------+       +------------------------+
+<img width="777" height="427" alt="4" src="https://github.com/user-attachments/assets/22c9eed7-3848-458c-ae0c-974976ac40e3" />
 
-[ Query & Retrieval Phase ]
-                                                                          |
-+---------------------+       +-----------------------+                   v
-| User Query / Prompt | ----> | Similarity Search /   | ------------------+
-+---------------------+       | Vector Store Lookup   |
-                              +-----------------------+
-                                          |
-                                          v (Relevant Context Chunks)
-                              +-----------------------+       +------------------------+
-                              | Prompt & Grounding    | ----> |  Google Gemini Model   |
-                              | Context Builder       |       |  (Grounded Final Q&A)  |
-                              +-----------------------+       +------------------------+
 
 ### Practical Applications
 
@@ -154,38 +130,11 @@ Rather than relying on a single model response for every task, the workflow allo
 
 ### Architecture
 
-![alt text](3.jpg)
+<img width="3309" height="1870" alt="3" src="https://github.com/user-attachments/assets/5d6172ac-a10f-458a-a562-00173f95e648" />
 
-+-----------------------+
-                              |  User Research Query  |
-                              +-----------------------+
-                                          |
-                                          v
-                              +-----------------------+
-                              | Autonomous AI Agent   | <---+ (Loop Feedback)
-                              | (Gemini Agent Core)   |     |
-                              +-----------------------+     |
-                                          |                 |
-                +-------------------------+-----------------+
-                | (Decision: Tool Selection & Invocation)   |
-                v                         v                 v
-     +--------------------+    +--------------------+  +--------------------+
-     |    web_search      |    | python_calculator  |  | local_file_reader  |
-     | (DuckDuckGo DDGS)  |    |  (Math Evaluation) |  | (Local Text Files) |
-     +--------------------+    +--------------------+  +--------------------+
-                |                         |                 |
-                +-------------------------+-----------------+
-                                          |
-                                          v
-                              +-----------------------+
-                              | Manual Tracing &      |
-                              | Execution Logging     |
-                              +-----------------------+
-                                          |
-                                          v (Iteration Cap / Final Synthesis)
-                              +-----------------------+
-                              | Final Answer Output   |
-                              +-----------------------+
+
+<img width="577" height="617" alt="5" src="https://github.com/user-attachments/assets/d13b65c1-dfe2-4c5f-826c-6560ed1d431b" />
+
 
 ### Practical Applications
 
